@@ -125,7 +125,7 @@ public:
     }
     void iterator(function<void(T)> func) { //para recorrer elementos de lista.
         //verificando que lista NO esté vacía.
-        if (head != nullptr) {
+        if (head != nullptr && end != nullptr) {
             //obteniendo nodo inicial
             Node* current = head;
             //recorriendo nodos siempre que no seas nullptr.
