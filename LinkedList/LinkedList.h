@@ -71,17 +71,15 @@ public:
            head = newNode;
            //indicando a end que apunte a head.
            end = head;
-           //incrementando cant. de elementos.
-           ++n;
         }
         else {
             //agregando nuevo nodo al final.
             end->next = newNode;
             //actualizando nodo final.
             end = newNode;
-            //incrementando cant. de elementos.
-            ++n;
         }
+        //incrementando cant. de elementos.
+        ++n;
     }
     void erase(size_t pos) {
         //verificando que lista NO esté vacía.
