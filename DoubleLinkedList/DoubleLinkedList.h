@@ -10,7 +10,6 @@
 
 using std::function;
 
-#include<iostream>
 //implementación de clase DoubleLinkedList
 template<class T>
 class DoubleLinkedList {
