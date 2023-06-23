@@ -84,7 +84,7 @@ public:
     void erase(size_t pos) {
         //verificando que lista NO esté vacía.
         if (head != nullptr && end != nullptr) {
-            //verificando que hacemos a una pos. existente.
+            //verificando que hacemos ref. a una pos. existente.
             if (pos >= 0 && pos < n) {
 
                 //obteniendo nodo inicial.
