@@ -25,14 +25,14 @@ private:
 
         //constructor para clase Node.
         Node(T item=NULL, Node* next=nullptr)
-            : item(item), next(next){
+                : item(item), next(next){
         }
     };
 
 public:
     //constructor para clase LinkedList.
     LinkedList()
-        : head(nullptr), end(nullptr), n(0){
+            : head(nullptr), end(nullptr), n(0){
     }
     //destructor para clase
     ~LinkedList() {
@@ -67,24 +67,26 @@ public:
         Node* newNode = new Node(item);
         //verificando si lista está vacía.
         if (head == nullptr && end == nullptr) {
-           //agregando primer nodo.
-           head = newNode;
-           //indicando a end que apunte a head.
-           end = head;
+            //agregando primer nodo.
+            head = newNode;
+            //indicando a end que apunte a head.
+            end = head;
+            //incrementando cant. de elementos.
+            ++n;
         }
         else {
             //agregando nuevo nodo al final.
             end->next = newNode;
             //actualizando nodo final.
             end = newNode;
+            //incrementando cant. de elementos.
+            ++n;
         }
-        //incrementando cant. de elementos.
-        ++n;
     }
     void erase(size_t pos) {
         //verificando que lista NO esté vacía.
-        if (head != nullptr && end != nullptr) {
-            //verificando que hacemos ref. a una pos. existente.
+        if (head != nullptr) {
+            //verificando que hacemos a una pos. existente.
             if (pos >= 0 && pos < n) {
 
                 //obteniendo nodo inicial.
@@ -100,8 +102,11 @@ public:
 
                 //evaluando si head y end son el mismo, es decir, existe 1 nodo.
                 if (current == head) {
-                   head = head->next;
-                   end = head;
+                    head = head->next;
+                    //evaluando si SOLO existe un nodo, a end le asignamos head(nullptr).
+                    if (n == 1) {
+                        end = head;
+                    }
                 }
                 else if (current == end) {
                     prev->next = nullptr;
@@ -118,18 +123,18 @@ public:
             }
         }
     }
-    void pop_front() {
+    void pop_front() { //elimina elem. en primera pos.
         erase(0);
     }
-    void pop_back() {
+    void pop_back() {  //elimina elem. en últ. pos.
         erase(n - 1);
     }
     void iterator(function<void(T)> func) { //para recorrer elementos de lista.
         //verificando que lista NO esté vacía.
-        if (head != nullptr && end != nullptr) {
+        if (head != nullptr) {
             //obteniendo nodo inicial
             Node* current = head;
-            //recorriendo nodos siempre que NO sea nullptr.
+            //recorriendo nodos siempre que no seas nullptr.
             while(current != nullptr) {
                 //aplicando función lambda a elemento del nodo.
                 func(current->item);
@@ -140,6 +145,13 @@ public:
     }
     bool empty() {
         return (head == nullptr && end == nullptr);
+    }
+
+    Node* begin() {
+        return head;
+    }
+    Node* _end() {
+        return end;
     }
 
 private:
