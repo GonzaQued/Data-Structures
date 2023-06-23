@@ -105,6 +105,7 @@ public:
                 }
                 else if (current == end) {
                     prev->next = nullptr;
+                    end = prev;
                 }
                 else {
                     prev->next = current->next;
