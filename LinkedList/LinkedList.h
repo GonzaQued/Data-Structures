@@ -128,7 +128,7 @@ public:
         if (head != nullptr && end != nullptr) {
             //obteniendo nodo inicial
             Node* current = head;
-            //recorriendo nodos siempre que no seas nullptr.
+            //recorriendo nodos siempre que NO sea nullptr.
             while(current != nullptr) {
                 //aplicando función lambda a elemento del nodo.
                 func(current->item);
