@@ -19,9 +19,9 @@ int main() {
     myList->push_back(100);
 
     //eliminando elementos.
-    //myList->erase(3);   //eliminando en pos. especifica.
-    //myList->pop_back();      //eliminando en ult. pos.
-    //myList->pop_front();     //eliminando en primera pos.
+    myList->erase(3);   //eliminando en pos. especifica.
+    myList->pop_back();      //eliminando en ult. pos.
+    myList->pop_front();     //eliminando en primera pos.
 
     //verificando que lista NO esté vacía.
     if (!myList->empty()) {
