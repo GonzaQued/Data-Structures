@@ -10,7 +10,6 @@
 
 using std::function;
 
-#include <iostream>
 //implementación de clase LinkedList.
 template<class T>
 class LinkedList {
