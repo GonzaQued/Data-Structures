@@ -66,7 +66,7 @@ public:
         //creando nodo.
         Node* newNode = new Node(item);
         //verificando si lista está vacía.
-        if (head == nullptr) {
+        if (head == nullptr && end == nullptr) {
            //agregando primer nodo.
            head = newNode;
            //indicando a end que apunte a head.
