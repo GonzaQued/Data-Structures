@@ -1,7 +1,7 @@
 #include <iostream>
 #include "HashTable.h"
 int main() {
-   HashTable<int>* hashTable = new HashTable<int>(4);
+    HashTable<int>* hashTable = new HashTable<int>(4);
     hashTable->insert("Gonzalo", 20);
     hashTable->insert("Luciana", 18);
     hashTable->insert("Miguel", 58);
@@ -14,8 +14,8 @@ int main() {
 
     hashTable->erase("Luana");
 
-   hashTable->iterator([](int v)->void { std::cout << v << " ";});
+    hashTable->iterator([](int v)->void { std::cout << v << " ";});
 
-   std::cout << "\nObteniendo valor: " <<   hashTable->get("Mer");
+    std::cout << "\nObteniendo valor: " <<   hashTable->get("Mer");
     return 0;
 }
