@@ -51,7 +51,9 @@ public:
         table = new vector<list<Node>>;
         //inicializando espacios de la tabla.
         for (size_t i = 0; i < TABLE_SIZE; ++i) {
-            list<Node> list;
+            //creando objeto tipo list.
+            list<Node> list.
+            //agregando listas a tabla.
             table->push_back(list);
         }
     }
