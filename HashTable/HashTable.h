@@ -31,7 +31,7 @@ private:
         T item;
         //constructor de clase Node.
         Node(string key="", T item=NULL)
-            : key(key), item(item) {
+                : key(key), item(item) {
         }
     };
     //método hash
@@ -48,25 +48,18 @@ public:
     //constructor de clase HashTable
     HashTable(const size_t TABLE_SIZE = 5) {
         //creando referencia a instancia del vector.
-        table = new vector<list<Node>*>;
+        table = new vector<list<Node>>;
         //inicializando espacios de la tabla.
         for (size_t i = 0; i < TABLE_SIZE; ++i) {
-            table->push_back(nullptr);
-        }
-        //generando referencias a instancia de listas.
-        for (size_t i = 0; i < TABLE_SIZE; ++i) {
-            table->at(i) = new list<Node>;
+            list<Node> list;
+            table->push_back(list);
         }
     }
     //destructor de clase HashTable
     ~HashTable() {
         //vaciando listas de la tabla.
         for (size_t i  = 0; i < table->size(); ++i) {
-            table->at(i)->clear();
-        }
-        //liberando memoria de cada espacio de tabla.
-        for (size_t i  = 0; i < table->size(); ++i) {
-            delete table->at(i);
+            table->at(i).clear();
         }
         //liberando memoria de tabla.
         delete table;
@@ -78,7 +71,7 @@ public:
         //obteniendo código hash.
         size_t index = hashMethod(key) % table->size();
         //recorriendo lista.
-        for (Node& node : *table->at(index)) {
+        for (Node& node : table->at(index)) {
             //verificamos si la clave ingresada YA existe.
             if (node.key == key) {
                 //si existe, reemplazamos su valor.
@@ -91,9 +84,9 @@ public:
         //verificando en caso NO exista la clave.
         if (!existe) {
             //en caso NO exista, ingresamos en últ. pos de mi lista el elemento.
-           table->at(index)->push_back(Node(key, item));
-           //incrementamos la cant. de elementos.
-           ++size;
+            table->at(index).push_back(Node(key, item));
+            //incrementamos la cant. de elementos.
+            ++size;
         }
     }
     T get(const string& key) const {    //para obtener elemento.
@@ -102,7 +95,7 @@ public:
         size_t index =  hashMethod(key) % table->size();
 
         //buscando clave en la lista correspondiente al índice
-        for (Node& node : *table->at(index)) {
+        for (Node& node : table->at(index)) {
             //verificamos si la clave ingresada YA existe.
             if (node.key == key) {
                 //actualizamos valor de var. "existe".
@@ -116,27 +109,35 @@ public:
         //obteniendo código hash.
         size_t index =  hashMethod(key) % table->size();
 
-        // buscando clave en la lista correspondiente al índice.
+        //recorriendo lista del índice "index" correspondiente.
+        for (auto it = table->at(index).begin(); it != table->at(index).end(); ++it) {
+            //buscando clave en la lista correspondiente al índice.
+            if (it->key == key) {
+                //borrar el par clave-valor de la lista
+                table->at(index).erase(it);
 
+                return;
+            }
+        }
     }
     void iterator(function<void(T)> func) {    //para iterar los elementos de cada lista.
         //recorriendo tabla.
         for (int i = 0; i < table->size(); ++i) {
             //verificando que la lista en "i" NO este vacia.
-            if (!table->at(i)->empty()) {
+            if (!table->at(i).empty()) {
                 //recorriendo contenido de la lista.
-                for (const Node& _iter : *table->at(i)) {
+                for (const Node& _iter : table->at(i)) {
                     func(_iter.item);
                 }
-               if (i < table->size() - 1) {
-                   std::cout << "\n";
-               }
+                if (i < table->size() - 1) {
+                    std::cout << "\n";
+                }
             }
         }
     }
 private:
     //atributos de clase HashTable
-    vector<list<Node>*>* table;       //tabla hash.
+    vector<list<Node>>* table;       //tabla hash.
     size_t size;                             //cant. elementos.
 };
 
