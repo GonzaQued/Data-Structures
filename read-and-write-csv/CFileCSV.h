@@ -1,5 +1,5 @@
 //
-// Created by zqued on 29/06/2023.
+// Created by Gonzalo Quedena on 29/06/2023.
 //
 
 #ifndef __CFILE__CSV_H__
@@ -9,9 +9,9 @@
 #include <functional>
 #include <vector>
 
-//para manipulación de archivos.
+//para manipulaciÃ³n de archivos.
 #include <fstream>
-//para manipulación de cadenas
+//para manipulaciÃ³n de cadenas
 #include <sstream>
 
 using std::endl;
@@ -27,14 +27,14 @@ using std::fstream;
 
 using std::function;
 
-//implementación de clase CSVRow.
+//implementaciÃ³n de clase CSVRow.
 class CSVRow {
 
 public:
     //atributos de clase CSVRow.
     vector<string> row;
 
-    //métodos de clase CSVRow.
+    //mÃ©todos de clase CSVRow.
     string& operator[](size_t index) {  //sobrecargando operador "[]".
         return row.at(index);
     }
@@ -43,23 +43,23 @@ public:
     }
 };
 
-//implementación de clase CFileCSV.
+//implementaciÃ³n de clase CFileCSV.
 class CFileCSV {
 
 private:
 
-    //métodos PRIVADOS.
-    vector<string> split(const string& line, char separator) { //para dividir línea de texto en campos separados por "separator".
+    //mÃ©todos PRIVADOS.
+    vector<string> split(const string& line, char separator) { //para dividir lÃ­nea de texto en campos separados por "separator".
 
-        //para almacenar palabras de cada línea.
+        //para almacenar palabras de cada lÃ­nea.
         vector<string>words;
         //para almacenar palabra temporalmente en la lectura.
         string word;
-        //objeto para manipular línea leía.
+        //objeto para manipular lÃ­nea leÃ­a.
         istringstream wordStream(line);
 
-        //obteniendo lectura de cada línea csv.
-        //mientras se pueda extraer líneas del objeto wordStream.
+        //obteniendo lectura de cada lÃ­nea csv.
+        //mientras se pueda extraer lÃ­neas del objeto wordStream.
         while (getline(wordStream, word, separator)) {
             words.push_back(word);
         }
@@ -72,7 +72,7 @@ public:
     CFileCSV(const string& address="")
         : address(address) {
     }
-    //métodos PÚBLICOS.
+    //mÃ©todos PÃšBLICOS.
     vector<CSVRow> loadCSV() { //para cargar desde un csv.
 
         vector<CSVRow> rows;
@@ -81,7 +81,7 @@ public:
 
         //verificando si hubo error en carga de archivo.
         if (!file.is_open()) {
-            //cerr: usado específicamente para mostrar mensaje de error.
+            //cerr: usado especÃ­ficamente para mostrar mensaje de error.
             cerr << "ERROR AL ABRIR ARCHIVO: " << address << endl;
         }
         else {
